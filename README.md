@@ -40,7 +40,7 @@ cd school-inventory-system-laravel
 ### 3. Install & Setup (One Command)
 Run this single command to install PHP dependencies, create `.env`, generate the application key, create the `school_inventory` database tables, and seed all initial records:
 ```bash
-composer install && composer setup
+composer setup
 ```
 
 ### 4. Start the Server
