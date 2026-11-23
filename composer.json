@@ -34,9 +34,10 @@
     },
     "scripts": {
         "setup": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php artisan key:generate --ansi",
-            "@php artisan migrate --seed --force"
+         "@composer install",
+         "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+         "@php artisan key:generate --ansi",
+         "@php artisan migrate --seed --force"
         ],
         "start": [
             "@php artisan serve"

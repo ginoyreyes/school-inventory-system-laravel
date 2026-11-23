@@ -16,6 +16,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Skip seeding if initial data already exists so `composer setup` can be re-run safely
+        if (User::where('username', 'lab.admin')->exists()) {
+            return;
+        }
+
         // 1. Bootstrap Administrator
         $admin = User::create([
             'name'                => 'Laboratory Administrator',
