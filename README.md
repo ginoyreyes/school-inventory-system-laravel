@@ -1,6 +1,6 @@
 # School Inventory Management System
 
-A full-stack **School & Computer Laboratory Inventory Management System** built with **Laravel**, **React (Vite)**, and **MySQL**, featuring role-based access control, stock movement tracking, equipment borrowing/returns, printable reports, and a complete audit trail.
+A full-stack **School & Computer Laboratory Inventory Management System** built with **Laravel 13**, **React (Vite)**, and **MySQL**, featuring role-based access control, stock movement tracking, equipment borrowing/returns, printable reports, and a complete audit trail.
 
 ---
 
@@ -17,12 +17,12 @@ A full-stack **School & Computer Laboratory Inventory Management System** built 
 
 ## Prerequisites
 
-Make sure the following are installed on your machine before running the project:
+Make sure the following are installed on your machine before setting up the project:
 
-- **PHP** 8.2 or higher
+- **PHP** **8.3 or higher** *(Laravel 13 requires PHP 8.3+; if using XAMPP with PHP 8.2, upgrade XAMPP's PHP folder to PHP 8.3/8.4 or use Laragon)*
 - **Composer**
 - **MySQL** (e.g., XAMPP, Laragon, WAMP, or standalone MySQL Server)
-- **Node.js** 18+ & **npm** *(optional — only needed if you plan to modify and rebuild the React UI)*
+- **Node.js** 18+ & **npm** *(optional — only needed if you plan to edit and rebuild the React UI)*
 
 ---
 
@@ -64,7 +64,7 @@ Open your browser and go to:
 
 ## Optional: Rebuilding the React Frontend
 
-The compiled frontend is already bundled inside `public/`, so no separate Node server is required. If you edit any React source files inside `client/src/`:
+The compiled frontend is already bundled inside `public/`, so no separate Node server is required. If you modify any React source files inside `client/src/`:
 
 1. Build the production bundle:
    ```bash
