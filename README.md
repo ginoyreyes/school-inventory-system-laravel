@@ -1,58 +1,96 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# School Inventory Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A full-stack **School & Computer Laboratory Inventory Management System** built with **Laravel**, **React (Vite)**, and **MySQL**, featuring role-based access control, stock movement tracking, equipment borrowing/returns, printable reports, and a complete audit trail.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Role-Based Access Control (RBAC):** `Administrator`, `Inventory Staff`, and `Viewer` permissions enforced via Laravel Gates and Sanctum API tokens.
+- **Inventory Management:** Full CRUD for equipment and school supplies, sequential item codes (`INV-0001`), low-stock/out-of-stock alerts, archiving, and restoration.
+- **Stock Transactions:** Atomic `Stock In`, `Stock Out`, and `Adjustment` tracking with automatic balance calculation (`TXN-00001`).
+- **Borrowing & Returns:** Track borrowed equipment (`BRW-0001`), expected return dates, overdue monitoring, and one-click return processing.
+- **Dashboard & Reports:** Real-time stock metrics, 7-day stock movement charts, category breakdowns, and CSV/printable reports.
+- **Activity Logs & Settings:** Complete audit log of user actions plus customizable units, item conditions, and low-stock thresholds.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Make sure the following are installed on your machine before running the project:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP** 8.2 or higher
+- **Composer**
+- **MySQL** (e.g., XAMPP, Laragon, WAMP, or standalone MySQL Server)
+- **Node.js** 18+ & **npm** *(optional — only needed if you plan to modify and rebuild the React UI)*
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## Quick Install & Run
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Start MySQL
+Open **XAMPP** (or Laragon/WAMP) and start **Apache** and **MySQL**.
 
+### 2. Clone the Repository
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone [https://github.com/ginoyreyes/school-inventory-system-laravel.git](https://github.com/ginoyreyes/school-inventory-system-laravel.git)
+cd school-inventory-system-laravel
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 3. Install & Setup (One Command)
+Run this single command to install PHP dependencies, create `.env`, generate the application key, create the `school_inventory` database tables, and seed all initial records:
+```bash
+composer install && composer setup
+```
 
-## Contributing
+### 4. Start the Server
+```bash
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Open your browser and go to:
+👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Default Login Credentials
 
-## Security Vulnerabilities
+| Field | Value |
+| :--- | :--- |
+| **Username or Email** | `lab.admin` *(or `lab.admin@cvsu.edu.ph`)* |
+| **Password** | `Admin1234` |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## Optional: Rebuilding the React Frontend
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The compiled frontend is already bundled inside `public/`, so no separate Node server is required. If you edit any React source files inside `client/src/`:
+
+1. Build the production bundle:
+   ```bash
+   cd client
+   npm install
+   npm run build
+   ```
+2. Copy the compiled files from `client/dist/` into `public/`:
+   - **Windows (CMD):**
+     ```cmd
+     xcopy /E /Y /I "dist\*" "..\public\"
+     ```
+   - **macOS / Linux:**
+     ```bash
+     cp -r dist/* ../public/
+     ```
+
+---
+
+## Useful Commands
+
+- **Reset database back to clean seeded data:**
+  ```bash
+  php artisan migrate:fresh --seed
+  ```
+- **Clear configuration cache after changing `.env`:**
+  ```bash
+  php artisan config:clear
+  ```
