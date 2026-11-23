@@ -18,9 +18,9 @@ return new class extends Migration
     $table->string('borrower_id_number', 40);
     $table->foreignId('item_id')->constrained('items');
     $table->unsignedInteger('quantity');
-    $table->timestamp('date_borrowed')->useCurrent();
-    $table->timestamp('expected_return_date');
-    $table->timestamp('actual_return_date')->nullable();
+    $table->dateTime('date_borrowed')->useCurrent();
+    $table->dateTime('expected_return_date');
+    $table->dateTime('actual_return_date')->nullable();
     $table->enum('status', ['Borrowed', 'Returned'])->default('Borrowed');
     $table->string('remarks', 300)->default('');
     $table->foreignId('recorded_by')->constrained('users');

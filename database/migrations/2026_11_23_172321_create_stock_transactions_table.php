@@ -18,7 +18,7 @@ return new class extends Migration
     $table->foreignId('item_id')->constrained('items')->cascadeOnDelete();
     $table->unsignedInteger('quantity');
     $table->unsignedInteger('balance_after');
-    $table->timestamp('date')->useCurrent();
+    $table->dateTime('date')->useCurrent();
     $table->string('supplier', 120)->default('');
     $table->string('reason', 160)->default('');
     $table->string('remarks', 300)->default('');
